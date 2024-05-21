@@ -12,10 +12,37 @@ import jakarta.persistence.Table;
 public class Livro {
     @Id
     private long id;
-    @Column (nullable = false)
+ 
+    @Column(nullable = false)
     private String titulo;
-   
+ 
     @ManyToOne
-    @JoinColumn(name = "id_genero", nullable = false)
+    @JoinColumn(name = "genero_id", nullable = false)
     private Genero genero;
+ 
+    public long getId() {
+        return id;
+    }
+ 
+    public void setId(long id) {
+        this.id = id;
+    }
+ 
+    public String getTitulo() {
+        return titulo;
+    }
+ 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+ 
+    public Genero getGenero() {
+        return genero;
+    }
+ 
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
 }
+ 
+//docker exec -it mysql mysql -uroot -p | SHOW TABLES FROM application;
