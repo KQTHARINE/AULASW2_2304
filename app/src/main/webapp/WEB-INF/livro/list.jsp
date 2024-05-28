@@ -1,34 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
-
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
-        <title>Lista de Livros</title>
+        <title>Livros</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
-        <h1>Lista de Livros</h1>
- 
-        <a href="/livro/insert">Novo Livro</a>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Gênero</th>
-                <th>&nbsp;</th>
-            </tr>
-            <c:forEach var="item" items="${livros}">
+        <div class="container">
+        <h1>Livros</h1>
+            <a href="/livros/insert" class="btn btn-primary">Novo Livro</a>
+            <table class="table">
                 <tr>
-                    <td>${item.id}</td>
-                    <td>${item.titulo}</td>
-                    <td>${item.genero.nome}</td>
-                    <td>
-                        <a href="/livros/update?id=${item.id}">Editar</a>
-                        <a href="/livros/delete?id=${item.id}">Deletar</a>
-                    </td>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Genero</th>
+                    <th>&nbsp;</th>
                 </tr>
-            </c:forEach>
-        </table>
+                <c:forEach var="item" items="${livros}">
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${item.titulo}</td>
+                        <td>${item.genero.nome}</td>
+                        <td>
+                            <a href="/livros/update?id=${item.id}" class="btn btn-secondary">Editar</a>
+                            <a href="/livros/delete?id=${item.id}" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
     </body>
 </html>
