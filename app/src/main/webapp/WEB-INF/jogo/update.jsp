@@ -6,31 +6,31 @@
  
         <head>
             <meta charset="UTF-8" />
-            <title>Editar Livro</title>
+            <title>Editar Jogo</title>
             <link href="/css/bootstrap.min.css" rel="stylesheet" />
         </head>
  
         <body>
             <div class="container">
-                <h1>Editar Livro</h1>
-                <form action="/livros/update" method="post">
-                    <input type="hidden" name="id" value="${livro.id}" />
+                <h1>Editar Jogo</h1>
+                <form action="/jogos/update" method="post">
+                    <input type="hidden" name="id" value="${jogo.id}" />
                     <div>
-                        <label class="form-label">Título:</label>
-                        <input type="text" name="titulo" class="form-control" value="${livro.titulo}" />
+                        <label class="form-label">Nome:</label>
+                        <input type="text" name="titulo" class="form-control" value="${jogo.titulo}" />
                     </div>
                     <div>
                         <label class="form-label">Gênero:</label>
                         <select name="genero" class="form-select">
                             <c:forEach var="item" items="${generos}">
-                                <option ${item.id == livro.genero.id ? "selected" : "" } value="${item.id}">${item.nome}
+                                <option ${item.id == jogos.genero.id ? "selected" : "" } value="${item.id}">${item.nome}
                                 </option>
                             </c:forEach>
                         </select>
                         <hr />
-                        <a href="/livros/list" class="btn btn-secondary">Voltar</a>
+                        <a href="/jogos/list" class="btn btn-secondary">Voltar</a>
                         <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
-            </div>
+            </div> 
             </div>
         </body>

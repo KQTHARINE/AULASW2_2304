@@ -4,15 +4,15 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
-        <title>Novo Livro</title>
+        <title>Novo jogo</title>
         <link href="/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container">
-        <h1>Novo Livro</h1>
-        <form action="/livros/insert" method="post">
+        <h1>Novo jogo</h1>
+        <form action="/jogos/insert" method="post">
             <div>
-                <label class="form-label">Título:</label>
+                <label class="form-label"> Nome:</label>
                 <input type="text" name="titulo" class="form-control" />
             </div>
             <div>
@@ -24,7 +24,7 @@
                 </select>
             </div>
         </hr>
-            <a href="/livros/list" class="btn btn-secondary">Voltar</a>
+            <a href="/jogos/list" class="btn btn-secondary">Voltar</a>
             <button type="submit" class="btn btn-success">Salvar</button>
         </form>
     </div>

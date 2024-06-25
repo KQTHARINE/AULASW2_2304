@@ -10,28 +10,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import application.model.Genero;
-import application.model.Livro;
+import application.model.Jogo;
 import application.repository.GeneroRepository;
-import application.repository.LivroRepository;
+import application.repository.JogoRepository;
  
 @Controller
-@RequestMapping("/livros")
-public class LivroController {
+@RequestMapping("/jogos")
+public class JogoController {
     @Autowired
-    private LivroRepository livrosRepo;
+    private JogoRepository jogosRepo;
     @Autowired
     private GeneroRepository generosRepo;
  
     @RequestMapping("/list")
     public String list(Model ui) {
-        ui.addAttribute("livros", livrosRepo.findAll());
-        return "/livro/list";
+        ui.addAttribute("jogos", jogosRepo.findAll());
+        return "/jogo/list";
     }
  
     @RequestMapping("/insert")
     public String insert(Model ui) {
         ui.addAttribute("generos", generosRepo.findAll());
-        return "/livro/insert";
+        return "/jogo/insert";
     }
  
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
@@ -41,56 +41,56 @@ public class LivroController {
  
         Optional<Genero> resultado = generosRepo.findById(generoId);
         if (resultado.isPresent()) {
-            Livro livro = new Livro();
-            livro.setTitulo(titulo);
-            livro.setGenero(resultado.get());
+            Jogo jogo = new Jogo();
+            jogo.setTitulo(titulo);
+            jogo.setGenero(resultado.get());
  
-            livrosRepo.save(livro);
+            jogosRepo.save(jogo);
         }
  
-        return "redirect:/livros/list";
+        return "redirect:/jogos/list";
     }
  
     @RequestMapping("/update")
     public String update (@RequestParam("id") long id, Model ui) {
-        Optional <Livro> result = livrosRepo.findById(id);
+        Optional <Jogo> result = jogosRepo.findById(id);
         if (result.isPresent()) {
-            ui.addAttribute("livro", result.get());
+            ui.addAttribute("jogo", result.get());
             ui.addAttribute("generos", generosRepo.findAll());
-            return "/livro/update";
+            return "/jogo/update";
         }
-        return "redirect:/livros/list";
+        return "redirect:/jogos/list";
     }
  
     @RequestMapping(value = "/update", method = RequestMethod.POST)
  
     public String update (@RequestParam("id") long id, @RequestParam("titulo") String titulo, @RequestParam("genero") long generoId) {
-        Optional<Livro> result = livrosRepo.findById(id);
+        Optional<Jogo> result = jogosRepo.findById(id);
         if (result.isPresent()) {
             Optional<Genero> resultGenero = generosRepo.findById(generoId);
             if (resultGenero.isPresent()) {
                 result.get().setTitulo(titulo);
                 result.get().setGenero(resultGenero.get());
  
-                livrosRepo.save(result.get());
+                jogosRepo.save(result.get());
             }
         }
-        return "redirect:/livros/list";
+        return "redirect:/jogos/list";
 }
  
 @RequestMapping("/delete")
-public String delete(Model ui, @RequestParam("id") long id) { Optional<Livro> resultado = livrosRepo.findById(id);
+public String delete(Model ui, @RequestParam("id") long id) { Optional<Jogo> resultado = jogosRepo.findById(id);
     if (resultado.isPresent()) {
-        ui.addAttribute("livro", resultado.get());
-        return "/livro/delete";
+        ui.addAttribute("jogo", resultado.get());
+        return "/jogo/delete";
     }
-    return "redirect:/livros/list";
+    return "redirect:/jogos/list";
 }
  
 @RequestMapping(value = "/delete", method = RequestMethod.POST)
 public String delete(@RequestParam("id") long id) { 
-    livrosRepo.deleteById(id);
+    jogosRepo.deleteById(id);
  
-    return "redirect:/livros/list";
+    return "redirect:/jogos/list";
 } }
  
